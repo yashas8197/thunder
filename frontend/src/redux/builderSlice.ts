@@ -3,6 +3,7 @@ import type { PayloadAction } from "@reduxjs/toolkit";
 import type { RootState } from "./store";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import api from "../api/axios";
+import type { Artifact } from "../types";
 
 export const generateTemplete = createAsyncThunk(
   "builder/templete",
@@ -22,7 +23,7 @@ interface BuilderState {
   prompt: string;
   loading: boolean;
   error: string | null;
-  uiPrompts?: string[];
+  uiPrompts?: Artifact[];
   prompts?: string[];
 }
 
