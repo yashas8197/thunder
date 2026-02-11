@@ -1,26 +1,15 @@
-export const StepType = {
-  CreateFile: "CreateFile",
-  CreateFolder: "CreateFolder",
-  EditFile: "EditFile",
-  DeleteFile: "DeleteFile",
-  RunScript: "RunScript",
-} as const;
-
-export type StepType = (typeof StepType)[keyof typeof StepType];
-
-export interface Step {
+export interface Action {
   id: number;
   title: string;
-  description: string;
-  type: StepType;
-  status: "pending" | "in-progress" | "completed";
-  code?: string;
-  path?: string;
+  type: "file" | "shell";
+  filePath?: string;
+  content: string;
 }
 
-export interface Project {
-  prompt: string;
-  steps: Step[];
+export interface Artifact {
+  id: string;
+  title: string;
+  actions: Action[];
 }
 
 export interface FileItem {
