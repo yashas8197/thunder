@@ -12,13 +12,28 @@ export interface Artifact {
   actions: Action[];
 }
 
-export interface FileItem {
-  name: string;
-  type: "file" | "folder";
-  children?: FileItem[];
-  content?: string;
-  path: string;
-}
+// export interface FileItem {
+//   name: string;
+//   type: "file" | "folder";
+//   children?: FileItem[];
+//   content?: string;
+//   path: string;
+// }
+
+export type FileItem =
+  | {
+      name: string;
+      type: "folder";
+      path: string;
+      children: FileItem[];
+    }
+  | {
+      name: string;
+      type: "file";
+      path: string;
+      content?: string;
+    };
+
 
 export interface FileViewerProps {
   file: FileItem | null;
