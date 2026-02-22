@@ -9,7 +9,7 @@ import { BASE_PROMPT, getSystemPrompt } from "./prompts.js";
 const anthropic = new Anthropic();
 const app = express();
 app.use(express.json());
-app.use(cors());
+app.use(cors({ origin: "*" }));
 
 app.post("/templete", async (req, res) => {
   const prompt = req.body.prompt;
