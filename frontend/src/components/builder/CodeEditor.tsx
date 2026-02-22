@@ -66,7 +66,7 @@ function CodeEditor({ selectedFile }: CodeEditorProps) {
             height="100%"
             language={getLanguage(selectedFile.name)}
             theme="vs-dark"
-            value={selectedFile.content || ''}
+            value={selectedFile.type === "file" ? selectedFile.content || '' : ''}
             beforeMount={handleEditorWillMount}
             options={{
               minimap: { enabled: false },
