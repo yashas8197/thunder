@@ -32,7 +32,7 @@ app.post("/templete", async (req, res) => {
     return res.json({
       prompts: [
         BASE_PROMPT,
-        `Here is an artifact that contains all files of the project visible to you.\nConsider the contents of ALL files in the project.\n\n${reactBasePrompt}\n\nHere is a list of files that exist on the file system but are not being shown to you:\n\n  - .gitignore\n  - package-lock.json\n`,
+        `Here is an artifact that contains all files of the project visible to you.\nConsider the contents of ALL files in the project.\n\n${JSON.stringify(reactBasePrompt)}\n\nHere is a list of files that exist on the file system but are not being shown to you:\n\n  - .gitignore\n  - package-lock.json\n`,
       ],
       uiPrompts: [reactBasePrompt],
     });
@@ -41,7 +41,7 @@ app.post("/templete", async (req, res) => {
   if (answer === "node") {
     return res.json({
       prompts: [
-        `Here is an artifact that contains all files of the project visible to you.\nConsider the contents of ALL files in the project.\n\n${reactBasePrompt}\n\nHere is a list of files that exist on the file system but are not being shown to you:\n\n  - .gitignore\n  - package-lock.json\n`,
+        `Here is an artifact that contains all files of the project visible to you.\nConsider the contents of ALL files in the project.\n\n${JSON.stringify(nodeBasePrompt)}\n\nHere is a list of files that exist on the file system but are not being shown to you:\n\n  - .gitignore\n  - package-lock.json\n`,
       ],
       uiPrompts: [nodeBasePrompt],
     });
@@ -54,7 +54,7 @@ app.post("/chat", async (req, res) => {
   const messages = req.body.messages;
   const response = await anthropic.messages.create({
     messages: messages,
-    model: "claude-3-5-sonnet-20241022",
+    model: "claude-sonnet-4-5-20250929",
     max_tokens: 8000,
     system: getSystemPrompt(),
   });
